@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom'
+import Filmes from './Components/Filmes'
+import Homepage from "./Components/Homepage"
+import Series from "./Components/Series"
+import Error from "./Components/ErrorPage"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component{
+  
+  render(){
+    return(
+      <Router>
+        <h1>GR Prime</h1>
+        <label>Alguma preferencia? </label>
+        <input/>
+
+        
+        <ul>
+          <li>
+            <Link to="/">Inicio</Link>
+          </li>
+
+          <li>
+            <Link to="/Series">Séries</Link>
+          </li>
+
+          <li>
+            <Link to="/Filmes">Filmes</Link>
+          </li>
+        </ul>
+        
+        <Routes>
+          <Route path="/" element={<Homepage/>}/>
+          <Route path="/Series" element={<Series/>}/>
+          <Route path="/Filmes" element={<Filmes/>}/>
+          <Route path="*" element={<Error/>}/>
+        </Routes>
+      </Router>
+    )
+  }
+
+
 }
-
-export default App;
